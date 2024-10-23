@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>比賽結果預測</title>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl w-full mx-auto">
+            <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">
+                比賽結果預測
+            </h1>
+
+            <div class="text-center text-2xl font-bold text-blue-600 mb-8">
+                <span id="winResult">{{winResult}}</span>
+            </div>
+
+            <div class="flex justify-between gap-8 mb-8">
+                <!-- 主場隊伍 -->
+                <div class="flex-1 bg-gray-50 rounded-xl p-6 shadow-md">
+                    <h2
+                        class="text-xl font-bold text-center mb-4 text-gray-700"
+                    >
+                        主場隊伍
+                    </h2>
+
+                    <div class="flex flex-col items-center space-y-6">
+                        <img
+                            src="{{ url_for('static', filename='images/teams/' + team1 + '.svg') }}"
+                            class="w-40 h-40 object-contain"
+                            alt="主場隊徽"
+                        />
+
+                        <div class="grid gap-6 w-full">
+                            <!-- 上排2張置中 -->
+                            <div class="flex justify-center gap-6">
+                                {% for player_id in players1[:2] %}
+                                <a
+                                    href="https://www.nba.com/stats/player/{{ player_id }}"
+                                    target="_blank"
+                                >
+                                    <img
+                                        src="https://cdn.nba.com/headshots/nba/latest/1040x760/{{ player_id }}.png"
+                                        class="w-28 h-28 object-cover rounded-full"
+                                        alt="Player {{ player_id }}"
+                                    />
+                                </a>
+                                {% endfor %}
+                            </div>
+                            <!-- 下排3張 -->
+                            <div class="flex justify-between">
+                                {% for player_id in players2[2:] %}
+                                <a
+                                    href="https://www.nba.com/stats/player/{{ player_id }}"
+                                >
+                                    <img
+                                        src="https://cdn.nba.com/headshots/nba/latest/1040x760/{{ player_id }}.png"
+                                        class="w-28 h-28 object-cover rounded-full"
+                                        alt="Player {{ player_id }}"
+                                    />
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <span class="text-3xl font-bold text-gray-600">VS</span>
+                </div>
+
+                <!-- 客場隊伍 -->
+                <div class="flex-1 bg-gray-50 rounded-xl p-6 shadow-md">
+                    <h2
+                        class="text-xl font-bold text-center mb-4 text-gray-700"
+                    >
+                        客場隊伍
+                    </h2>
+
+                    <div class="flex flex-col items-center space-y-6">
+                        <img
+                            src="{{ url_for('static', filename='images/teams/' + team2 + '.svg') }}"
+                            class="w-40 h-40 object-contain"
+                            alt="客場隊徽"
+                        />
+
+                        <div class="grid gap-6 w-full">
+                            <!-- 上排2張置中 -->
+                            <div class="flex justify-center gap-6">
+                                {% for player_id in players2[:2] %}
+                                <a
+                                    href="https://www.nba.com/stats/player/{{ player_id }}"
+                                    target="_blank"
+                                >
+                                    <img
+                                        src="https://cdn.nba.com/headshots/nba/latest/1040x760/{{ player_id }}.png"
+                                        class="w-28 h-28 object-cover rounded-full"
+                                        alt="Player {{ player_id }}"
+                                    />
+                                </a>
+                                {% endfor %}
+                            </div>
+                            <!-- 下排3張 -->
+                            <div class="flex justify-between">
+                                {% for player_id in players2[2:] %}
+                                <a
+                                    href="https://www.nba.com/stats/player/{{ player_id }}"
+                                >
+                                    <img
+                                        src="https://cdn.nba.com/headshots/nba/latest/1040x760/{{ player_id }}.png"
+                                        class="w-28 h-28 object-cover rounded-full"
+                                        alt="Player {{ player_id }}"
+                                    />
+                                </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a
+                    href="{{url_for('back')}}"
+                    class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200"
+                    >返回首頁</a
+                >
+            </div>
+        </div>
+    </body>
+</html>
