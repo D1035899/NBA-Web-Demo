@@ -1,6 +1,6 @@
 .select2-container {
-            width: 100% !important;
-        }
+    width: 100% !important;
+}
 .select2-container .select2-selection--single {
     height: 40px;
     border: 1px solid #e2e8f0;
