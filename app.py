@@ -61,7 +61,7 @@ def predict():
         else :
             win = 2
             winResult = "客場獲勝"
-        return render_template('predict.html', predictResult=result, winResult=winResult, players1=selectedPlayers1, players2=selectedPlayers2, team1=selectedTeam1, team2=selectedTeam2)
+        return render_template('predict.html', winResult=winResult, players1=selectedPlayers1, players2=selectedPlayers2, team1=selectedTeam1, team2=selectedTeam2)
 
 @app.route('/back', methods=['GET'])
 def back():

@@ -1,73 +1,79 @@
 .select2-container {
             width: 100% !important;
         }
-        .select2-container .select2-selection--single {
-            height: 40px;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.375rem;
-            background-color: #f9fafb;
-        }
-        .select2-container--default .select2-selection--multiple {
-            border: 1px solid #e2e8f0;
-            border-radius: 0.375rem;
-            background-color: #f9fafb;
-            min-height: 40px;
-            height: auto;
-            max-height: 160px; /* 設定最大高度 */
-            overflow-y: auto; /* 允許垂直滾動 */
-        }
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 40px;
-            padding-left: 12px;
-            color: #1f2937;
-        }
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 38px;
-        }
-        .select2-container--default .select2-results__option--highlighted[aria-selected] {
-            background-color: #2563eb;
-        }
-        .select2-dropdown {
-            border: 1px solid #e2e8f0;
-            border-radius: 0.375rem;
-        }
-        .select2-search__field {
-            border-radius: 0.25rem !important;
-        }
-        .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            background-color: #e5e7eb;
-            border: 1px solid #d1d5db;
-            border-radius: 0.25rem;
-            padding: 2px 8px;
-            margin: 4px 4px;
-            float: left;
-            clear: none;
-        }
-        .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-            padding: 0 8px;
-            display: block;
-        }
-        .select2-container--default .select2-selection--multiple .select2-search--inline {
-            float: left;
-            padding: 4px;
-        }
-        .select2-container--default .select2-selection--multiple .select2-search--inline .select2-search__field {
-            margin-top: 4px;
-            margin-left: 0;
-            padding: 0;
-        }
-        /* 美化滾動條 */
-        .select2-container--default .select2-selection--multiple::-webkit-scrollbar {
-            width: 6px;
-        }
-        .select2-container--default .select2-selection--multiple::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-        .select2-container--default .select2-selection--multiple::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 3px;
-        }
-        .select2-container--default .select2-selection--multiple::-webkit-scrollbar-thumb:hover {
-            background: #666;
-        }
+.select2-container .select2-selection--single {
+    height: 40px;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    background-color: #f9fafb;
+}
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    background-color: #f9fafb;
+    min-height: 40px;
+    height: auto;
+    max-height: 160px; /* 設定最大高度 */
+    overflow-y: auto; /* 允許垂直滾動 */
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 40px;
+    padding-left: 12px;
+    color: #1f2937;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: #2563eb;
+}
+.select2-dropdown {
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+}
+.select2-search__field {
+    border-radius: 0.25rem !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #e5e7eb;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    padding: 2px 8px;
+    margin: 4px 4px;
+    float: left;
+    clear: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+    padding: 0 8px;
+    display: block;
+}
+.select2-container--default .select2-selection--multiple .select2-search--inline {
+    float: left;
+    padding: 4px;
+}
+.select2-container--default .select2-selection--multiple .select2-search--inline .select2-search__field {
+    margin-top: 4px;
+    margin-left: 0;
+    padding: 0;
+}
+/* 美化滾動條 */
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar {
+    width: 6px;
+}
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    border: none;
+    border-radius: 0.25rem;
+    padding: 2px 8px;
+    margin: 4px;
+}
