@@ -44,10 +44,10 @@
                             id="team1"
                         >
                             <option value="" disabled selected>選擇隊伍</option>
-                            {% for teamid, name in teams %}
+                            {% for name, team in teams %}
                             <option
                                 on
-                                value="{{ teamid }}"
+                                value="{{ team }}"
                                 data-name="{{ name }}"
                             >
                                 {{name}}
@@ -65,16 +65,16 @@
                             multiple="multiple"
                             name="selectedPlayer1"
                             id="team1Players"
+                            disabled
                         >
-                            {% for playerid, name in players %}
+                            <!-- {% for playerid, name in players %}
                             <option
-                                on
                                 value="{{ playerid }}"
                                 data-name="{{ name }}"
                             >
                                 {{name}}
                             </option>
-                            {% endfor %}
+                            {% endfor %} -->
                         </select>
                     </div>
 
@@ -92,10 +92,10 @@
                             id="team2"
                         >
                             <option value="" disabled selected>選擇隊伍</option>
-                            {% for teamid, name in teams %}
+                            {% for name, team in teams %}
                             <option
                                 on
-                                value="{{ teamid }}"
+                                value="{{ team }}"
                                 data-name="{{ name }}"
                             >
                                 {{name}}
@@ -113,8 +113,9 @@
                             multiple="multiple"
                             name="selectedPlayer2"
                             id="team2Players"
+                            disabled
                         >
-                            {% for playerid, name in players %}
+                            <!-- {% for playerid, name in players %}
                             <option
                                 on
                                 value="{{ playerid }}"
@@ -122,7 +123,7 @@
                             >
                                 {{name}}
                             </option>
-                            {% endfor %}
+                            {% endfor %} -->
                         </select>
                     </div>
                 </div>
@@ -143,5 +144,6 @@
             type="text/javascript"
             src="{{ url_for('static', filename = 'javascript/script.js') }}"
         ></script>
+        <script src="../static/javascript/script.js"></script>
     </body>
 </html>
