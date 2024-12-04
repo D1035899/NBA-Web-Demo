@@ -1,3 +1,5 @@
+gameid
+playerid
 plusminusPTS
 estNETRTG
 REBpct
@@ -28,8 +30,6 @@ contestedFGA
 OFFRTG
 TSpct
 FGM
-playerid
-team
 3Ppct
 FTAST
 STL
@@ -42,9 +42,10 @@ contestedFGM
 3PM
 name
 PIP
-home
 SPD
 FTpct
 PTSoffTOV
 DEFRTG
-contestedFGpct
+team
+home
+win

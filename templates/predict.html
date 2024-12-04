@@ -16,13 +16,14 @@
             <h1
                 class="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800"
             >
-                比賽結果預測
+                比賽結果預測 {{predictResult}}
             </h1>
 
             <div
                 class="text-xl sm:text-2xl font-bold text-center text-blue-600 mb-6 sm:mb-8"
             >
-                <span id="winResult">{{winResult}}</span>
+                <span id="winResult">{{winner}}獲勝
+                </span>
             </div>
 
             <div
@@ -66,6 +67,7 @@
                                 {% for player_id in players1[2:] %}
                                 <a
                                     href="https://www.nba.com/stats/player/{{player_id}}"
+                                    target="_blank"
                                     class="block w-20 sm:w-24 lg:w-28"
                                 >
                                     <img
@@ -125,6 +127,7 @@
                                 {% for player_id in players2[2:] %}
                                 <a
                                     href="https://www.nba.com/stats/player/{{player_id}}"
+                                    target="_blank"
                                     class="block w-20 sm:w-24 lg:w-28"
                                 >
                                     <img
