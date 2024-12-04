@@ -163,7 +163,7 @@ class PredictModel():
 
 
 if __name__ == "__main__":
-    model = tf.keras.models.load_model("../model/my_modelmax.h5")
+    model = tf.keras.models.load_model("../model/my_model1.h5")
     data = pd.read_csv("../data/mixData.csv")
     file_path = '../data/selected_columns_s.txt'
     prediction = PredictModel(model, data, file_path)

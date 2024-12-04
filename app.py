@@ -70,6 +70,7 @@ def predict():
         print(f"player1: {selectedPlayers1}")
         print(f"player2: {selectedPlayers2}")
         predictResult = model.prediction(selectedPlayers1, selectedPlayers2)
+        print(f"{predictResult}")
         print(f"主場勝率: {predictResult[0][0]}")
         print(f"客場勝率: {predictResult[0][1]}")
 

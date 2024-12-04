@@ -9,8 +9,12 @@ from tensorflow import nn
 
 class PredictionModel():
     def __init__(self):
-        self.model = self.loadModel("./model/final_model.h5")
+        # self.model = self.loadModel("./model/my_model2.h5")
         self.selectedFeatures = self.getFeaturesCols('./data/selected_columns_s.txt')
+        self.X_train = pd.read_csv('./data/X_train.csv').to_numpy()
+        self.X_test = pd.read_csv('./data/X_test.csv').to_numpy()
+        self.y_train = pd.read_csv('./data/y_train.csv')
+        self.y_test = pd.read_csv('./data/y_test.csv')
         self.data = pd.read_csv('./data/Looki.csv')
         self.shape = 1444
 
@@ -48,6 +52,28 @@ class PredictionModel():
                 result_array.append(zero_data)
 
     def prediction(self, team1Players, team2Players):
+        X_shape = self.shape - 1
+        self.X_train = self.X_train.reshape(self.X_train.shape[0], 1, X_shape)  # (samples, time steps, features)
+        self.X_test = self.X_test.reshape(self.X_test.shape[0], 1, X_shape)
+        # model = self.loadModel('./model/my_model2.h5')
+        model = tf.keras.models.Sequential([
+            tf.keras.layers.LSTM(80, activation=tf.nn.tanh, return_sequences=True, input_shape=(1, X_shape)), # Correct input shape
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.LSTM(60, activation=tf.nn.tanh, return_sequences=True),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.LSTM(40, activation=tf.nn.tanh),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.Dense(20, activation=tf.nn.sigmoid),
+            tf.keras.layers.Dropout(0.2),
+            tf.keras.layers.Dense(2, activation=tf.nn.softmax)
+        ])
+        if model:
+            # 編譯模型
+            model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+            # 訓練模型
+            model.fit(self.X_train, self.y_train, epochs=30, batch_size=32)
+            # loss, accuracy = model.evaluate(self.X_test, self.y_test, verbose=0)
+            # print(f"模型准确性: {accuracy:.2f}")
         result_array = []
         scaler = MinMaxScaler()
         self.process_player_ids(team1Players, self.data, self.selectedFeatures, result_array)
@@ -67,8 +93,8 @@ class PredictionModel():
         input_vector = flattenedDf.reshape(1, 1, 511)
         # print()
         input_vector = input_vector.astype(np.float32)
-        if self.model:
-            predicted_class = self.model.predict(input_vector)
+        if model:
+            predicted_class = model.predict(input_vector)
             return predicted_class
         else:
             print("沒有模型")
