@@ -73,6 +73,10 @@ def predict():
         print(f"{predictResult}")
         print(f"主場勝率: {predictResult[0][0]}")
         print(f"客場勝率: {predictResult[0][1]}")
+        winRate1 = f"{predictResult[0][0] * 100:.2f}%"
+        winRate2 = f"{predictResult[0][1] * 100:.2f}%"
+        print(winRate1)
+        print(winRate2)
 
         if(predictResult[0][0] > predictResult[0][1]):
             winner = '主場'
@@ -95,15 +99,17 @@ def predict():
                 for prediction in session['predictions']:
                     if set(prediction['players1']) == set(selectedPlayers1) and set(prediction['players2']) == set(selectedPlayers2):
                         print('偵測到相同的隊伍組合')
-                        return render_template('predict.html', predictResult=prediction['result'], winner=prediction['winner'], players1=prediction['players1'], players2=prediction['players2'], team1=prediction['team1'], team2=prediction['team2'])
+                        return render_template('predict.html', winRate1=prediction['winRate1'], winRate2=prediction['winRate2'], winner=prediction['winner'], players1=prediction['players1'], players2=prediction['players2'], team1=prediction['team1'], team2=prediction['team2'])
                     elif set(prediction['players1']) == set(selectedPlayers2) and set(prediction['players2']) == set(selectedPlayers1):
                         print('偵測到相同的隊伍組合 (反向)')
-                        return render_template('predict.html', predictResult=prediction['result'], winner=prediction['loser'], players1=prediction['players2'], players2=prediction['players1'], team1=prediction['team2'], team2=prediction['team1'])
+                        return render_template('predict.html', winRate1=prediction['winRate2'], winRate2=prediction['winRate1'], winner=prediction['loser'], players1=prediction['players2'], players2=prediction['players1'], team1=prediction['team2'], team2=prediction['team1'])
                     else:
                         print('沒有偵測到相同的隊伍組合')
         prediction_data = {
             'id': prediction_id,
             'result': predictResult.tolist(),
+            'winRate1': winRate1,
+            'winRate2': winRate2,
             'team1': selectedTeam1,
             'team2': selectedTeam2,
             'players1': selectedPlayers1,
@@ -113,7 +119,7 @@ def predict():
         }
         session['predictions'].append(prediction_data)
         print(f"儲存的預測結果:\n{session['predictions']}")
-        return render_template('predict.html', predictResult=predictResult, winner=winner, players1=selectedPlayers1, players2=selectedPlayers2, team1=selectedTeam1, team2=selectedTeam2)
+        return render_template('predict.html', winRate1=winRate1, winRate2=winRate2, winner=winner, players1=selectedPlayers1, players2=selectedPlayers2, team1=selectedTeam1, team2=selectedTeam2)
 
 # 返回首頁
 @app.route('/back', methods=['GET'])

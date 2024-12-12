@@ -16,14 +16,13 @@
             <h1
                 class="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6 text-gray-800"
             >
-                比賽結果預測 {{predictResult}}
+                比賽結果預測
             </h1>
 
             <div
                 class="text-xl sm:text-2xl font-bold text-center text-blue-600 mb-6 sm:mb-8"
             >
-                <span id="winResult">{{winner}}獲勝
-                </span>
+                <span id="winResult">{{winner}}獲勝</span>
             </div>
 
             <div
@@ -35,6 +34,11 @@
                         class="text-lg sm:text-xl font-bold text-center mb-4 text-blue-700"
                     >
                         主場隊伍
+                    </h2>
+                    <h2
+                        class="text-lg sm:text-xl font-bold text-center mb-4 text-blue-700"
+                    >
+                        {{winRate1}}
                     </h2>
 
                     <div
@@ -95,6 +99,11 @@
                         class="text-lg sm:text-xl font-bold text-center mb-4 text-red-700"
                     >
                         客場隊伍
+                    </h2>
+                    <h2
+                        class="text-lg sm:text-xl font-bold text-center mb-4 text-red-700"
+                    >
+                        {{winRate2}}
                     </h2>
 
                     <div

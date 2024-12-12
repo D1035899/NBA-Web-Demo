@@ -5,6 +5,8 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.layers import LSTM, Dense, Dropout
 import tensorflow as tf
 from tensorflow import nn
+from tensorflow.keras.models import model_from_json
+from keras.layers import GRU, Conv1D, Attention
 
 
 class PredictionModel():
@@ -53,27 +55,37 @@ class PredictionModel():
 
     def prediction(self, team1Players, team2Players):
         X_shape = self.shape - 1
+        dropout_rate = 0.2
         self.X_train = self.X_train.reshape(self.X_train.shape[0], 1, X_shape)  # (samples, time steps, features)
         self.X_test = self.X_test.reshape(self.X_test.shape[0], 1, X_shape)
+        # with open('./model/eightgamesmodel.json', 'r') as json_file:
+            # model_json = json_file.read()
+        # model = model_from_json(model_json)
+        # model = self.loadModel('./model/eightgamesCmodelGUR.h5')
+        # model.load_weights('./model/eightgamesmodel.h5')
         # model = self.loadModel('./model/my_model2.h5')
         model = tf.keras.models.Sequential([
-            tf.keras.layers.LSTM(80, activation=tf.nn.tanh, return_sequences=True, input_shape=(1, X_shape)), # Correct input shape
-            tf.keras.layers.Dropout(0.2),
-            tf.keras.layers.LSTM(60, activation=tf.nn.tanh, return_sequences=True),
-            tf.keras.layers.Dropout(0.2),
-            tf.keras.layers.LSTM(40, activation=tf.nn.tanh),
-            tf.keras.layers.Dropout(0.2),
-            tf.keras.layers.Dense(20, activation=tf.nn.sigmoid),
-            tf.keras.layers.Dropout(0.2),
-            tf.keras.layers.Dense(2, activation=tf.nn.softmax)
+            LSTM(80, activation=tf.nn.tanh, return_sequences=True, input_shape=(1, X_shape)), # Correct input shape
+            Dropout(dropout_rate),
+            LSTM(60, activation=tf.nn.tanh, return_sequences=True),
+            Dropout(dropout_rate),
+            GRU(units=60, return_sequences=True),
+            Dropout(dropout_rate),
+            LSTM(40, activation=tf.nn.tanh),
+            Dropout(dropout_rate),
+            Dense(20, activation=tf.nn.sigmoid),
+            Dropout(dropout_rate),
+            Dense(2, activation=tf.nn.softmax)
         ])
+
         if model:
             # 編譯模型
             model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
             # 訓練模型
             model.fit(self.X_train, self.y_train, epochs=30, batch_size=32)
-            # loss, accuracy = model.evaluate(self.X_test, self.y_test, verbose=0)
-            # print(f"模型准确性: {accuracy:.2f}")
+            loss, accuracy = model.evaluate(self.X_test, self.y_test, verbose=0)
+            print(f"模型准确性: {accuracy:.3f}")
+            # model.save('modeltest.h5')
         result_array = []
         scaler = MinMaxScaler()
         self.process_player_ids(team1Players, self.data, self.selectedFeatures, result_array)
@@ -91,7 +103,6 @@ class PredictionModel():
         # input_vector = scaler.transform(flattenedDf)
         # print(f"flattenedDf: {flattenedDf}")
         input_vector = flattenedDf.reshape(1, 1, 511)
-        # print()
         input_vector = input_vector.astype(np.float32)
         if model:
             predicted_class = model.predict(input_vector)
